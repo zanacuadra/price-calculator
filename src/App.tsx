@@ -118,11 +118,10 @@ export default function PricingCalculator() {
 
   return (
     <div className="App">
-      {/* Encabezado con logo y título/eslogan */}
+      {/* Encabezado con logo a la izquierda, título y eslogan a la derecha */}
       <header className="app-header">
-        {/* Logo Marine Farm en blanco */}
         <img
-          src="/logo-marinefarm-blanco.png"
+          src="/marinefarm-logo-white.png"
           alt="Marine Farm Logo"
           className="logo"
         />
