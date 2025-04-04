@@ -21,7 +21,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #1A3542; /* Nuevo color de fondo */
+  background-color: #2E3B45; /* Nuevo color de fondo */
   color: #fff;
   padding: 1.5rem;
   border-radius: 8px;
@@ -29,7 +29,7 @@ body {
 
 /* Logo en la esquina izquierda */
 .logo {
-  height: 60px;
+  height: 80px;
 }
 
 /* Título y tagline alineados a la derecha */
@@ -100,7 +100,7 @@ body {
 }
 
 .pricing-table thead {
-  background-color: #1A3542;
+  background-color: #2E3B45;
   color: #fff;
 }
 
