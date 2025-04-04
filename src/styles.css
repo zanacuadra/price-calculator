@@ -1,11 +1,11 @@
-/* Fuente principal: si tienes la fuente Walsheim, asegúrate de enlazarla o importarla */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"); 
-/* Nota: Si tienes acceso a la fuente Walsheim específica, reemplázala */
+
+/* Importa la fuente. Si cuentas con Marine Farm Walsheim, reemplaza por ella */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif; /* Usamos una sans-serif moderna como alternativa */
+  font-family: 'Montserrat', sans-serif;
   background-color: #fff;
   color: #333;
 }
@@ -17,24 +17,37 @@ body {
   padding: 1rem;
 }
 
-/* Encabezado con fondo azul corporativo */
+/* Encabezado: Flex para ubicar logo a la izquierda y texto a la derecha */
 .app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #205F6D; /* Azul corporativo */
   color: #fff;
-  padding: 2rem 1rem;
-  text-align: center;
+  padding: 1.5rem;
   border-radius: 8px;
 }
 
+/* Logo a la izquierda */
+.logo {
+  height: 60px;
+  /* Ajusta el tamaño según corresponda */
+}
+
+/* Contenedor del texto en el header, alineado a la derecha */
+.header-text {
+  text-align: right;
+}
+
 .app-title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin: 0;
   font-weight: 700;
 }
 
 .app-tagline {
   font-size: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   font-style: italic;
 }
 
@@ -59,6 +72,7 @@ body {
   display: block;
 }
 
+/* Centraliza el número del input */
 .input-field {
   width: 80%;
   max-width: 300px;
@@ -66,6 +80,7 @@ body {
   border: 2px solid #205F6D;
   border-radius: 4px;
   font-size: 1rem;
+  text-align: center;
 }
 
 /* Tabla de resultados */
@@ -77,11 +92,12 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto;
+  font-size: 0.9rem; /* Fuente reducida para que la columna precio se vea entera */
 }
 
 .pricing-table th,
 .pricing-table td {
-  padding: 1rem;
+  padding: 0.8rem;
   border: 1px solid #ddd;
   text-align: center;
 }
@@ -92,12 +108,12 @@ body {
 }
 
 .pricing-table tbody tr:nth-child(even) {
-  background-color: #fff4e6; /* Fondo naranja muy suave para alternar */
+  background-color: #fff4e6;
 }
 
 .price {
   font-weight: 700;
-  color: #FF8C00; /* Naranja corporativo para resaltar */
+  color: #FF8C00;
 }
 
 /* Pie de página */
