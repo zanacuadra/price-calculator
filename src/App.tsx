@@ -126,7 +126,7 @@ export default function PricingCalculator() {
           className="logo"
         />
         <div className="header-text">
-          <h1 className="app-title">Marine Farm Calculator</h1>
+          <h1 className="app-title">Price Calculator</h1>
           <p className="app-tagline">Inspired by nature, driven by people</p>
         </div>
       </header>
