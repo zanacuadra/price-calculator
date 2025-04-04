@@ -79,7 +79,7 @@ export default function PricingCalculator() {
   ];
 
   // Cálculo del precio con base en la fórmula proporcionada
-  const calcularPrecio = (rmp, productoData) => {
+  const calcularPrecio = (rmp: any, productoData: any) => {
     const {
       costoProceso,
       costoLogistico,
