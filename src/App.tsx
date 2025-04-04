@@ -118,18 +118,24 @@ export default function PricingCalculator() {
 
   return (
     <div className="App">
-      {/* Encabezado */}
+      {/* Encabezado con logo y título/eslogan */}
       <header className="app-header">
-        <h1 className="app-title">Marine Farm Calculator</h1>
-        <p className="app-tagline">Inspired by nature, driven by people</p>
+        {/* Logo Marine Farm en blanco */}
+        <img
+          src="/logo-marinefarm-blanco.png"
+          alt="Marine Farm Logo"
+          className="logo"
+        />
+        <div className="header-text">
+          <h1 className="app-title">Marine Farm Calculator</h1>
+          <p className="app-tagline">Inspired by nature, driven by people</p>
+        </div>
       </header>
 
       {/* Contenedor de la calculadora */}
       <div className="calculator-container">
         <div className="input-section">
-          <label className="input-label">
-            RMP (Retorno Materia Prima)
-          </label>
+          <label className="input-label">RMP (Retorno Materia Prima)</label>
           <input
             type="number"
             value={rmp}
@@ -167,23 +173,4 @@ export default function PricingCalculator() {
                           ? "Congelado"
                           : "Fresco"}
                       </td>
-                      <td className="price">{precio}</td>
-                      <td>{unidad}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-
-      {/* Pie de página o nota */}
-      <footer className="app-footer">
-        <p>
-          * Considera 0,30 cents de flete a Asia y 1,50% de Comisión en USA.
-        </p>
-      </footer>
-    </div>
-  );
-}
+                      <td
