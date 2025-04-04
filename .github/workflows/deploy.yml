@@ -8,6 +8,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+      # Agregas esta sección de permisos
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v2
 
