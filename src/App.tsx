@@ -4,7 +4,7 @@ import "./styles.css"; // Asegúrate de que la ruta sea correcta
 export default function PricingCalculator() {
   const [rmp, setRmp] = useState<number>(0);
 
-  // Datos de productos
+  // Datos de productos (sin cambios)
   const productosData = [
     {
       pais: "BRASIL",
@@ -118,7 +118,7 @@ export default function PricingCalculator() {
 
   return (
     <div className="App">
-      {/* Encabezado con logo a la izquierda, título y eslogan a la derecha */}
+      {/* Encabezado con el nuevo color de fondo y el logo en la esquina izquierda */}
       <header className="app-header">
         <img
           src="/marinefarm-logo-white.png"
@@ -131,7 +131,6 @@ export default function PricingCalculator() {
         </div>
       </header>
 
-      {/* Contenedor de la calculadora */}
       <div className="calculator-container">
         <div className="input-section">
           <label className="input-label">RMP (Retorno Materia Prima)</label>
@@ -183,7 +182,6 @@ export default function PricingCalculator() {
         )}
       </div>
 
-      {/* Pie de página */}
       <footer className="app-footer">
         <p>* Considera 0,30 cents de flete a Asia y 1,50% de Comisión en USA.</p>
       </footer>
