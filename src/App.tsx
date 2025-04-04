@@ -121,7 +121,7 @@ export default function PricingCalculator() {
       {/* Encabezado con el nuevo color de fondo y el logo en la esquina izquierda */}
       <header className="app-header">
         <img
-          src="/marinefarm-logo-white.png"
+          src={`${process.env.PUBLIC_URL}/marinefarm-logo-white.png`}
           alt="Marine Farm Logo"
           className="logo"
         />
