@@ -173,4 +173,21 @@ export default function PricingCalculator() {
                           ? "Congelado"
                           : "Fresco"}
                       </td>
-                      <td
+                      <td className="price">{precio}</td>
+                      <td>{unidad}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      {/* Pie de página */}
+      <footer className="app-footer">
+        <p>* Considera 0,30 cents de flete a Asia y 1,50% de Comisión en USA.</p>
+      </footer>
+    </div>
+  );
+}
