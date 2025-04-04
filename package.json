@@ -1,6 +1,7 @@
 {
   "name": "react-typescript",
   "version": "1.0.0",
+  "homepage": "https://zanacuadra.github.io/price-calculator",
   "description": "React and TypeScript example starter project",
   "keywords": ["typescript", "react", "starter"],
   "main": "src/index.tsx",
