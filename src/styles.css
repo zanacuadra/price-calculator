@@ -1,4 +1,4 @@
-/* Importa la fuente. Si cuentas con Marine Farm Walsheim, reemplaza por ella */
+/* Si cuentas con la fuente oficial de Marine Farm, cámbiala aquí */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
 body {
@@ -79,7 +79,7 @@ body {
   border: 2px solid #205F6D;
   border-radius: 4px;
   font-size: 1rem;
-  text-align: center;
+  text-align: center; /* Centraliza el texto ingresado */
 }
 
 /* Tabla de resultados */
@@ -91,7 +91,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto;
-  font-size: 0.9rem; /* Fuente reducida para que la columna precio se vea entera */
+  font-size: 0.88rem; /* Reducir un poco la fuente */
 }
 
 .pricing-table th,
