@@ -1,4 +1,4 @@
-/* Si cuentas con la fuente oficial de Marine Farm, cámbiala aquí */
+/* Fuente de ejemplo; cámbiala si tienes la oficial de Marine Farm */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
 body {
@@ -9,31 +9,30 @@ body {
   color: #333;
 }
 
-/* Contenedor principal */
 .App {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
 }
 
-/* Encabezado: Flex para ubicar logo a la izquierda y texto a la derecha */
+/* Cambia el fondo del encabezado al color que haga juego con el adjunto. 
+   Ejemplo: #1A3542 (ajústalo según tu preferencia) */
 .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #205F6D; /* Azul corporativo */
+  background-color: #1A3542; /* Nuevo color de fondo */
   color: #fff;
   padding: 1.5rem;
   border-radius: 8px;
 }
 
-/* Logo a la izquierda */
+/* Logo en la esquina izquierda */
 .logo {
   height: 60px;
-  /* Ajusta el tamaño según corresponda */
 }
 
-/* Contenedor del texto en el header, alineado a la derecha */
+/* Título y tagline alineados a la derecha */
 .header-text {
   text-align: right;
 }
@@ -50,7 +49,6 @@ body {
   font-style: italic;
 }
 
-/* Sección de entrada */
 .calculator-container {
   margin-top: 2rem;
   padding: 1rem;
@@ -65,7 +63,7 @@ body {
 
 .input-label {
   font-size: 1.2rem;
-  color: #205F6D;
+  color: #1A3542; /* Resalta con el nuevo color */
   font-weight: 700;
   margin-bottom: 0.5rem;
   display: block;
@@ -76,13 +74,13 @@ body {
   width: 80%;
   max-width: 300px;
   padding: 0.8rem;
-  border: 2px solid #205F6D;
+  border: 2px solid #1A3542;
   border-radius: 4px;
   font-size: 1rem;
-  text-align: center; /* Centraliza el texto ingresado */
+  text-align: center;
 }
 
-/* Tabla de resultados */
+/* Tabla */
 .table-container {
   overflow-x: auto;
 }
@@ -91,7 +89,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto;
-  font-size: 0.88rem; /* Reducir un poco la fuente */
+  font-size: 0.9rem;
 }
 
 .pricing-table th,
@@ -102,7 +100,7 @@ body {
 }
 
 .pricing-table thead {
-  background-color: #205F6D;
+  background-color: #1A3542;
   color: #fff;
 }
 
@@ -115,7 +113,6 @@ body {
   color: #FF8C00;
 }
 
-/* Pie de página */
 .app-footer {
   text-align: center;
   margin-top: 2rem;
@@ -132,3 +129,4 @@ body {
     width: 90%;
   }
 }
+
