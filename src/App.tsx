@@ -4,7 +4,7 @@ import "./styles.css"; // Asegúrate de que la ruta sea correcta
 export default function PricingCalculator() {
   const [rmp, setRmp] = useState<number>(0);
 
-  // Datos de productos (sin cambios)
+  // Datos de productos (sin cambios)correcta
   const productosData = [
     {
       pais: "BRASIL",
@@ -183,7 +183,9 @@ export default function PricingCalculator() {
       </div>
 
       <footer className="app-footer">
-        <p>* Considera 0,30 cents de flete a Asia y 1,50% de Comisión en USA.</p>
+        <p>
+          * Considera 0,30 cents de flete a Asia y 1,50% de Comisión en USA.
+        </p>
       </footer>
     </div>
   );
