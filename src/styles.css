@@ -1,10 +1,9 @@
-/* Fuente de ejemplo; cámbiala si tienes la oficial de Marine Farm */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #fff;
   color: #333;
 }
@@ -15,26 +14,23 @@ body {
   padding: 1rem;
 }
 
-/* Cambia el fondo del encabezado al color que haga juego con el adjunto. 
-   Ejemplo: #1A3542 (ajústalo según tu preferencia) */
+/* Header */
 .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #2E3B45; /* Nuevo color de fondo */
-  color: #fff;
+  background-color: #2e3b45;
   padding: 1.5rem;
   border-radius: 8px;
 }
 
-/* Logo en la esquina izquierda */
 .logo {
-  height: 80px;
+  height: 100px;
 }
 
-/* Título y tagline alineados a la derecha */
 .header-text {
   text-align: right;
+  color: #fff;
 }
 
 .app-title {
@@ -49,38 +45,51 @@ body {
   font-style: italic;
 }
 
+/* Species selector: centrado */
+.species-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.species-selector button {
+  background: #fff;
+  color: #2e3b45;
+  border: 2px solid #2e3b45;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+}
+
+.species-selector .active {
+  background: #2e3b45;
+  color: #fff;
+}
+
+/* Quitar flechas numéricas */
+.row-input::-webkit-outer-spin-button,
+.row-input::-webkit-inner-spin-button,
+.input-field::-webkit-outer-spin-button,
+.input-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.row-input,
+.input-field {
+  -moz-appearance: textfield;
+}
+
+/* Calculadora / Tabla */
 .calculator-container {
-  margin-top: 2rem;
+  background: #f9f9f9;
   padding: 1rem;
-  background-color: #f9f9f9;
   border-radius: 8px;
 }
 
-.input-section {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.input-label {
-  font-size: 1.2rem;
-  color: #1A3542; /* Resalta con el nuevo color */
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-/* Centraliza el número del input */
-.input-field {
-  width: 80%;
-  max-width: 300px;
-  padding: 0.8rem;
-  border: 2px solid #1A3542;
-  border-radius: 4px;
-  font-size: 1rem;
-  text-align: center;
-}
-
-/* Tabla */
 .table-container {
   overflow-x: auto;
 }
@@ -89,18 +98,19 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
 
 .pricing-table th,
 .pricing-table td {
-  padding: 0.8rem;
+  padding: 0.6rem;
   border: 1px solid #ddd;
   text-align: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 .pricing-table thead {
-  background-color: #2E3B45;
+  background-color: #2e3b45;
   color: #fff;
 }
 
@@ -108,11 +118,43 @@ body {
   background-color: #fff4e6;
 }
 
-.price {
-  font-weight: 700;
-  color: #FF8C00;
+/* Inputs: RMP y Precio */
+.row-input {
+  width: 60px;
+  margin: 0 auto;
+  display: block;
+  padding: 0.3rem;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-weight: 700; /* RMP en negrita */
 }
 
+.price-input {
+  color: #ff8c00;
+  font-weight: 700;
+}
+
+/* Placeholder styling para inputs */
+.row-input::placeholder,
+.price-input::placeholder {
+  color: inherit;
+  opacity: 1;
+  font-weight: 700;
+}
+
+/* Si tienes un input global */
+.input-field {
+  width: 60px;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+/* Footer */
 .app-footer {
   text-align: center;
   margin-top: 2rem;
@@ -120,13 +162,11 @@ body {
   color: #666;
 }
 
-/* Responsividad */
+/* Responsive */
 @media (max-width: 768px) {
   .app-title {
     font-size: 1.5rem;
   }
-  .input-field {
-    width: 90%;
-  }
 }
+
 
