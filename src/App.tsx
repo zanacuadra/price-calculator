@@ -8,8 +8,8 @@ type Producto = {
   pais: string;
   producto: string;
   costoProceso: number;
-  tarifa: number; // principal logistic component (air or sea)
-  terrestre: number; // terrestrial freight
+  tarifa: number;
+  terrestre: number;
   costoEmpaque: number;
   rendimiento: number;
   handling: number;
@@ -21,6 +21,7 @@ type Producto = {
 };
 
 const productosData: Producto[] = [
+  // Atlántico
   {
     species: "Atlantico",
     pais: "BRASIL",
@@ -39,22 +40,20 @@ const productosData: Producto[] = [
     pais: "CHINA",
     producto: "ENTERO FRESCO",
     costoProceso: 0.47,
-    tarifa: 0.0,
-    terrestre: 0.15,
+    tarifa: 0.38,
+    terrestre: 0,
     costoEmpaque: 0.266,
     rendimiento: 0.885,
     handling: 0,
     comision: 0,
-    arancel: 0.1,
-    camaraFrio: 0.1,
-    comex: 0.03,
+    comex: 0.0,
   },
   {
     species: "Atlantico",
     pais: "USA",
     producto: "TD FRESCO",
     costoProceso: 1.116,
-    tarifa: 1.76, // aéreo
+    tarifa: 1.76,
     terrestre: 0.15,
     costoEmpaque: 0.365,
     rendimiento: 0.585,
@@ -109,27 +108,30 @@ const productosData: Producto[] = [
     pais: "USA",
     producto: "FILETE TD CONGELADO",
     costoProceso: 1.381,
-    tarifa: 0.38,
+    tarifa: 0.4,
     terrestre: 0,
     costoEmpaque: 0.392,
     rendimiento: 0.58,
     handling: 0.07,
     comision: 0.02,
-    comex: 0.03,
+    arancel: 0.1,
+    comex: 0.0,
   },
   {
     species: "Atlantico",
     pais: "USA",
     producto: "FILETE TE CONGELADO",
     costoProceso: 1.703,
-    tarifa: 0.38,
+    tarifa: 0.4,
     terrestre: 0,
     costoEmpaque: 0.392,
     rendimiento: 0.46,
     handling: 0.07,
     comision: 0.02,
-    comex: 0.03,
+    arancel: 0.1,
+    comex: 0.0,
   },
+  // Coho
   {
     species: "Coho",
     pais: "JAPON",
@@ -243,9 +245,8 @@ export default function PricingCalculator() {
     const isCongeladoUSA = p.pais === "USA" && p.producto.includes("CONGELADO");
 
     if (isTDUSA) {
-      // Fórmula específica TD FRESCO USA
       let A = rmp / p.rendimiento + p.costoProceso + p.costoEmpaque;
-      A = A * (1 + (p.arancel || 0));
+      A = A * (1 + (p.arancel ?? 0));
       let C =
         A +
         p.tarifa +
@@ -256,31 +257,23 @@ export default function PricingCalculator() {
       C = C * (1 + p.comision);
       return C / 2.20462;
     } else if (isCongeladoUSA) {
-      // USA congelado: marítimo (tarifa) + terrestre + handling + comex + comisión + arancel
       let A = rmp / p.rendimiento + p.costoProceso + p.costoEmpaque;
-      A = A * (1 + (p.arancel || 0));
+      A = A * (1 + (p.arancel ?? 0));
       let C = A + p.tarifa + p.terrestre + p.comex + p.handling;
       C = C * (1 + p.comision);
       return C;
     } else if (p.pais === "USA") {
-      // Otros USA frescos
-      const A =
-        rmp / p.rendimiento +
+      const sumCosts =
         p.costoProceso +
+        p.tarifa +
+        p.terrestre +
         p.costoEmpaque +
-        p.tarifa +
-        p.terrestre +
-        p.handling;
-      return A / (1 - p.comision);
+        p.handling +
+        p.comex;
+      return (rmp / p.rendimiento + sumCosts) / (1 - p.comision);
     } else {
-      // Resto de mercados
-      return (
-        rmp / p.rendimiento +
-        p.costoProceso +
-        p.tarifa +
-        p.terrestre +
-        p.costoEmpaque
-      );
+      const sumCosts = p.costoProceso + p.tarifa + p.terrestre + p.costoEmpaque;
+      return rmp / p.rendimiento + sumCosts;
     }
   };
 
@@ -297,23 +290,27 @@ export default function PricingCalculator() {
         (p.camaraFrio! + p.rayosX!) -
         p.comex -
         p.handling;
-      const D = A / (1 + (p.arancel || 0));
+      const D = A / (1 + (p.arancel ?? 0));
       return (D - p.costoProceso - p.costoEmpaque) * p.rendimiento;
     } else if (isCongeladoUSA) {
       let A = price / (1 + p.comision);
       A = A - p.tarifa - p.terrestre - p.comex - p.handling;
-      const D = A / (1 + (p.arancel || 0));
+      const D = A / (1 + (p.arancel ?? 0));
       return (D - p.costoProceso - p.costoEmpaque) * p.rendimiento;
     } else if (p.pais === "USA") {
-      const A =
+      const pre =
         price * (1 - p.comision) -
-        (p.costoProceso + p.costoEmpaque + p.tarifa + p.terrestre + p.handling);
-      return A * p.rendimiento;
+        (p.costoProceso +
+          p.tarifa +
+          p.terrestre +
+          p.costoEmpaque +
+          p.handling +
+          p.comex);
+      return pre * p.rendimiento;
     } else {
-      return (
-        (price - (p.costoProceso + p.tarifa + p.terrestre + p.costoEmpaque)) *
-        p.rendimiento
-      );
+      const pre =
+        price - (p.costoProceso + p.tarifa + p.terrestre + p.costoEmpaque);
+      return pre * p.rendimiento;
     }
   };
 
@@ -374,7 +371,7 @@ export default function PricingCalculator() {
               <th>País</th>
               <th>Producto</th>
               <th>Conservación</th>
-              <th>Precio Calculado</th>
+              <th>Precio</th>
               <th>Unidad</th>
             </tr>
           </thead>
