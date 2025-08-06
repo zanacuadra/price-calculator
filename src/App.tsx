@@ -8,11 +8,16 @@ type Producto = {
   pais: string;
   producto: string;
   costoProceso: number;
-  costoLogistico: number;
+  tarifa: number; // principal logistic component (air or sea)
+  terrestre: number; // terrestrial freight
   costoEmpaque: number;
   rendimiento: number;
   handling: number;
   comision: number;
+  arancel?: number;
+  camaraFrio?: number;
+  rayosX?: number;
+  comex: number;
 };
 
 const productosData: Producto[] = [
@@ -21,165 +26,200 @@ const productosData: Producto[] = [
     pais: "BRASIL",
     producto: "ENTERO FRESCO",
     costoProceso: 0.47,
-    costoLogistico: 0,
+    tarifa: 0,
+    terrestre: 0,
     costoEmpaque: 0.266,
     rendimiento: 0.885,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Atlantico",
     pais: "CHINA",
     producto: "ENTERO FRESCO",
     costoProceso: 0.47,
-    costoLogistico: 0.38,
+    tarifa: 0.0,
+    terrestre: 0.15,
     costoEmpaque: 0.266,
     rendimiento: 0.885,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    arancel: 0.1,
+    camaraFrio: 0.1,
+    comex: 0.03,
   },
   {
     species: "Atlantico",
     pais: "USA",
     producto: "TD FRESCO",
-    costoProceso: 1.12,
-    costoLogistico: 2.08,
-    costoEmpaque: 0.36,
-    rendimiento: 0.578,
+    costoProceso: 1.116,
+    tarifa: 1.76, // aéreo
+    terrestre: 0.15,
+    costoEmpaque: 0.365,
+    rendimiento: 0.585,
     handling: 0.07,
-    comision: 0.015,
+    comision: 0.02,
+    arancel: 0.1,
+    camaraFrio: 0.1,
+    rayosX: 0.1,
+    comex: 0.03,
   },
   {
     species: "Atlantico",
     pais: "ASIA",
     producto: "ENTERO CONGELADO",
     costoProceso: 0.561,
-    costoLogistico: 0.3,
-    costoEmpaque: 0.09,
+    tarifa: 0.3,
+    terrestre: 0,
+    costoEmpaque: 0.086,
     rendimiento: 0.88,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Atlantico",
     pais: "RUSIA",
     producto: "ENTERO CONGELADO",
     costoProceso: 0.561,
-    costoLogistico: 0.65,
-    costoEmpaque: 0.09,
+    tarifa: 0.65,
+    terrestre: 0,
+    costoEmpaque: 0.086,
     rendimiento: 0.88,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Atlantico",
     pais: "ASIA",
     producto: "FILETE TC S/OFF CONGELADO",
     costoProceso: 1.371,
-    costoLogistico: 0.3,
+    tarifa: 0.3,
+    terrestre: 0,
     costoEmpaque: 0.392,
     rendimiento: 0.585,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Atlantico",
     pais: "USA",
     producto: "FILETE TD CONGELADO",
     costoProceso: 1.381,
-    costoLogistico: 0.4,
+    tarifa: 0.38,
+    terrestre: 0,
     costoEmpaque: 0.392,
-    rendimiento: 0.575,
+    rendimiento: 0.58,
     handling: 0.07,
-    comision: 0.015,
+    comision: 0.02,
+    comex: 0.03,
   },
   {
     species: "Atlantico",
     pais: "USA",
     producto: "FILETE TE CONGELADO",
     costoProceso: 1.703,
-    costoLogistico: 0.4,
+    tarifa: 0.38,
+    terrestre: 0,
     costoEmpaque: 0.392,
     rendimiento: 0.46,
     handling: 0.07,
-    comision: 0.015,
+    comision: 0.02,
+    comex: 0.03,
   },
   {
     species: "Coho",
     pais: "JAPON",
     producto: "HG CONGELADO",
     costoProceso: 0.625,
-    costoLogistico: 0.27,
+    tarifa: 0.27,
+    terrestre: 0,
     costoEmpaque: 0.084,
     rendimiento: 0.74,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Coho",
     pais: "BRASIL",
     producto: "HG FRESCO",
     costoProceso: 0.534,
-    costoLogistico: 0.0,
+    tarifa: 0,
+    terrestre: 0,
     costoEmpaque: 0.244,
     rendimiento: 0.748,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Coho",
     pais: "BRASIL",
     producto: "HON FRESCO",
     costoProceso: 0.573,
-    costoLogistico: 0.0,
+    tarifa: 0,
+    terrestre: 0,
     costoEmpaque: 0.224,
     rendimiento: 0.86,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Coho",
     pais: "ASIA",
     producto: "HG CONGELADO",
     costoProceso: 0.625,
-    costoLogistico: 0.3,
+    tarifa: 0.3,
+    terrestre: 0,
     costoEmpaque: 0.084,
     rendimiento: 0.74,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Coho",
     pais: "ASIA",
     producto: "HON CONGELADO",
     costoProceso: 0.573,
-    costoLogistico: 0.3,
+    tarifa: 0.3,
+    terrestre: 0,
     costoEmpaque: 0.097,
     rendimiento: 0.86,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Coho",
     pais: "ASIA",
     producto: "FILETE TC S/OFF CONGELADO",
     costoProceso: 1.547,
-    costoLogistico: 0.3,
+    tarifa: 0.3,
+    terrestre: 0,
     costoEmpaque: 0.362,
     rendimiento: 0.57,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
   {
     species: "Coho",
     pais: "RUSIA",
     producto: "HG CONGELADO",
     costoProceso: 0.625,
-    costoLogistico: 0.648,
+    tarifa: 0.65,
+    terrestre: 0,
     costoEmpaque: 0.084,
     rendimiento: 0.74,
-    handling: 0.0,
-    comision: 0.0,
+    handling: 0,
+    comision: 0,
+    comex: 0.0,
   },
 ];
 
@@ -195,92 +235,106 @@ export default function PricingCalculator() {
     setPriceValues(filtered.map(() => ""));
   }, [species]);
 
-  // Utility to sanitize leading zeros
   const sanitize = (val: string) => val.replace(/^0+(?=[1-9])/, "");
-
-  // Parse string with comma or dot to number
   const parseNumber = (val: string) => parseFloat(val.replace(",", ".")) || 0;
 
-  // Price calculation numeric
-  const calcPriceNum = (rmp: number, p: Producto) => {
-    let precio: number;
-    if (p.pais === "USA" && p.producto === "TD FRESCO") {
-      precio =
-        (rmp / p.rendimiento +
-          p.costoProceso +
-          p.costoLogistico +
-          p.costoEmpaque +
-          p.handling) /
-        (1 - p.comision);
-      precio = precio / 2.2046;
+  const calcPriceNum = (rmp: number, p: Producto): number => {
+    const isTDUSA = p.pais === "USA" && p.producto === "TD FRESCO";
+    const isCongeladoUSA = p.pais === "USA" && p.producto.includes("CONGELADO");
+
+    if (isTDUSA) {
+      // Fórmula específica TD FRESCO USA
+      let A = rmp / p.rendimiento + p.costoProceso + p.costoEmpaque;
+      A = A * (1 + (p.arancel || 0));
+      let C =
+        A +
+        p.tarifa +
+        p.terrestre +
+        (p.camaraFrio! + p.rayosX!) +
+        p.comex +
+        p.handling;
+      C = C * (1 + p.comision);
+      return C / 2.20462;
+    } else if (isCongeladoUSA) {
+      // USA congelado: marítimo (tarifa) + terrestre + handling + comex + comisión + arancel
+      let A = rmp / p.rendimiento + p.costoProceso + p.costoEmpaque;
+      A = A * (1 + (p.arancel || 0));
+      let C = A + p.tarifa + p.terrestre + p.comex + p.handling;
+      C = C * (1 + p.comision);
+      return C;
     } else if (p.pais === "USA") {
-      precio =
-        (rmp / p.rendimiento +
-          p.costoProceso +
-          p.costoLogistico +
-          p.costoEmpaque +
-          p.handling) /
-        (1 - p.comision);
-    } else {
-      precio =
+      // Otros USA frescos
+      const A =
         rmp / p.rendimiento +
         p.costoProceso +
-        p.costoLogistico +
-        p.costoEmpaque;
+        p.costoEmpaque +
+        p.tarifa +
+        p.terrestre +
+        p.handling;
+      return A / (1 - p.comision);
+    } else {
+      // Resto de mercados
+      return (
+        rmp / p.rendimiento +
+        p.costoProceso +
+        p.tarifa +
+        p.terrestre +
+        p.costoEmpaque
+      );
     }
-    return precio;
   };
 
-  // RMP inverse calculation numeric
-  const calcRmpNum = (price: number, p: Producto) => {
-    const sumCosts =
-      p.costoProceso +
-      p.costoLogistico +
-      p.costoEmpaque +
-      (p.pais === "USA" ? p.handling : 0);
-    if (p.pais === "USA" && p.producto === "TD FRESCO") {
-      const pre = price * 2.2046 * (1 - p.comision) - sumCosts;
-      return pre * p.rendimiento;
+  const calcRmpNum = (price: number, p: Producto): number => {
+    const isTDUSA = p.pais === "USA" && p.producto === "TD FRESCO";
+    const isCongeladoUSA = p.pais === "USA" && p.producto.includes("CONGELADO");
+
+    if (isTDUSA) {
+      let A = (price * 2.20462) / (1 + p.comision);
+      A =
+        A -
+        p.tarifa -
+        p.terrestre -
+        (p.camaraFrio! + p.rayosX!) -
+        p.comex -
+        p.handling;
+      const D = A / (1 + (p.arancel || 0));
+      return (D - p.costoProceso - p.costoEmpaque) * p.rendimiento;
+    } else if (isCongeladoUSA) {
+      let A = price / (1 + p.comision);
+      A = A - p.tarifa - p.terrestre - p.comex - p.handling;
+      const D = A / (1 + (p.arancel || 0));
+      return (D - p.costoProceso - p.costoEmpaque) * p.rendimiento;
     } else if (p.pais === "USA") {
-      const pre = price * (1 - p.comision) - sumCosts;
-      return pre * p.rendimiento;
+      const A =
+        price * (1 - p.comision) -
+        (p.costoProceso + p.costoEmpaque + p.tarifa + p.terrestre + p.handling);
+      return A * p.rendimiento;
     } else {
-      return (price - sumCosts) * p.rendimiento;
+      return (
+        (price - (p.costoProceso + p.tarifa + p.terrestre + p.costoEmpaque)) *
+        p.rendimiento
+      );
     }
   };
 
   const handleRmpChange = (idx: number, value: string) => {
-    const sanitized = sanitize(value);
-    const rmpNum = parseNumber(sanitized);
-    const newPriceNum = calcPriceNum(rmpNum, filtered[idx]);
-    const priceStr = newPriceNum.toFixed(2).replace(".", ",");
-    setRmpValues((vals) => {
-      const c = [...vals];
-      c[idx] = sanitized;
-      return c;
-    });
-    setPriceValues((vals) => {
-      const c = [...vals];
-      c[idx] = priceStr;
-      return c;
-    });
+    const s = sanitize(value);
+    const num = parseNumber(s);
+    const pr = calcPriceNum(num, filtered[idx]);
+    setRmpValues((vals) => vals.map((v, i) => (i === idx ? s : v)));
+    setPriceValues((vals) =>
+      vals.map((v, i) => (i === idx ? pr.toFixed(2).replace(".", ",") : v))
+    );
   };
 
   const handlePriceChange = (idx: number, value: string) => {
-    const sanitized = sanitize(value);
-    const priceNum = parseNumber(sanitized);
-    const newRmpNum = calcRmpNum(priceNum, filtered[idx]);
-    const rmpStr = newRmpNum.toFixed(2).replace(".", ",");
-    setPriceValues((vals) => {
-      const c = [...vals];
-      c[idx] = sanitized;
-      return c;
-    });
-    setRmpValues((vals) => {
-      const c = [...vals];
-      c[idx] = rmpStr;
-      return c;
-    });
+    const s = sanitize(value);
+    const num = parseNumber(s);
+    const rm = calcRmpNum(num, filtered[idx]);
+    setPriceValues((vals) => vals.map((v, i) => (i === idx ? s : v)));
+    setRmpValues((vals) =>
+      vals.map((v, i) => (i === idx ? rm.toFixed(2).replace(".", ",") : v))
+    );
   };
 
   return (
@@ -326,8 +380,8 @@ export default function PricingCalculator() {
           </thead>
           <tbody>
             {filtered.map((prod, idx) => {
-              const rmpStr = rmpValues[idx] || "";
-              const priceStr = priceValues[idx] || "";
+              const rmp = rmpValues[idx] || "";
+              const price = priceValues[idx] || "";
               const unidad =
                 prod.pais === "USA" && prod.producto === "TD FRESCO"
                   ? "USD/lb"
@@ -338,7 +392,7 @@ export default function PricingCalculator() {
                     <input
                       type="text"
                       className="row-input"
-                      value={rmpStr}
+                      value={rmp}
                       placeholder="0,00"
                       onChange={(e) => handleRmpChange(idx, e.target.value)}
                     />
@@ -354,7 +408,7 @@ export default function PricingCalculator() {
                     <input
                       type="text"
                       className="row-input price-input"
-                      value={priceStr}
+                      value={price}
                       placeholder="0,00"
                       onChange={(e) => handlePriceChange(idx, e.target.value)}
                     />
